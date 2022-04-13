@@ -1,3 +1,0 @@
-/home/pavell/these/SEPrivate/CMakeFiles/rebuild_cache.dir
-/home/pavell/these/SEPrivate/CMakeFiles/edit_cache.dir
-/home/pavell/these/SEPrivate/CMakeFiles/SuccinctEdge_cata.dir
