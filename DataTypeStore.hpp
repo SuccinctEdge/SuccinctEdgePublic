@@ -12,9 +12,6 @@
 #include "BitMap.hpp"
 #include "DatastructureConstant.hpp"
 #include "DataSeries.hpp"
-#include "parquet/arrow/writer.h"
-#include <arrow/api.h>
-#include <arrow/io/api.h>
 #include <cstdint>
 #include <iostream>
 #include <vector>
@@ -66,8 +63,8 @@ public:
     void drop_all_data_with_index(long index);
     void change_mode(int index, data_function function);
     void all_change_mode(data_function function);
-    void persist_all();
-    void series_to_arrow_table(const vector<DataSeries<double>> series, std::shared_ptr<arrow::Table>* table);
+    //void persist_all();
+    //void series_to_arrow_table(const vector<DataSeries<double>> series, std::shared_ptr<arrow::Table>* table);
 
     std::vector<JoinLine> look_up_ele1(ID_TYPE ele0, const string& ele2);
     std::vector<JoinLine> look_up_ele1_with_reason(ID_TYPE ele0_begin, ID_TYPE ele0_end, const string& ele2);

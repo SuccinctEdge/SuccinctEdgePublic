@@ -6,8 +6,6 @@
 #include "DataTypeStore.hpp"
 #include <time.h>
 
-using arrow::DoubleBuilder;
-using arrow::ListBuilder;
 
 DataTypeStore::DataTypeStore(){};
 
@@ -616,7 +614,7 @@ void DataTypeStore::drop_data() {
         i->remove_element();
     }
 }
-
+/*
 void DataTypeStore::series_to_arrow_table(const vector<DataSeries<double>> series, std::shared_ptr<arrow::Table>* table) {
     
   arrow::MemoryPool* pool = arrow::default_memory_pool();
@@ -657,7 +655,7 @@ void DataTypeStore::persist_all(){
 
     PARQUET_THROW_NOT_OK(
       parquet::arrow::WriteTable(*table, arrow::default_memory_pool(), outfile, 3));
-}
+}*/
 
 void DataTypeStore::drop_data_with_index(long index) {
     vec_ele2_data[index].remove_element();
