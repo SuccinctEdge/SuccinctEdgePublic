@@ -130,7 +130,7 @@ void tcpReceiver(){
         mosquitto_int_option(mosq, MOSQ_OPT_PROTOCOL_VERSION, MQTT_PROTOCOL_V5);
         mosquitto_connect(mosq, url, 1883, 1000);
         mosquitto_message_callback_set(mosq, on_message);
-        mosquitto_subscribe_v5(mosq, NULL, "anomaly", 2, 0, NULL);
+        mosquitto_subscribe_v5(mosq, NULL, "anomaly", 0, 0, NULL);
 
         mosq_query = mosquitto_new(NULL, true, NULL);
         mosquitto_int_option(mosq_query, MOSQ_OPT_PROTOCOL_VERSION, MQTT_PROTOCOL_V5);
@@ -141,17 +141,17 @@ void tcpReceiver(){
         mosquitto_int_option(mosq, MOSQ_OPT_PROTOCOL_VERSION, MQTT_PROTOCOL_V5);
         mosquitto_connect(mosq, url, 1883, 1000);
         mosquitto_message_callback_set(mosq, on_message);
-        mosquitto_subscribe_v5(mosq, NULL, "test", 2, 0, NULL);
+        mosquitto_subscribe_v5(mosq, NULL, "test", 0, 0, NULL);
 
         for(int i = 1; i <= 120; i++){
-            mosquitto_subscribe_v5(mosq, NULL, std::to_string(i).c_str(), 2, 0, NULL);
+            mosquitto_subscribe_v5(mosq, NULL, std::to_string(i).c_str(), 0, 0, NULL);
         }
 
         mosq_query = mosquitto_new(NULL, true, NULL);
         mosquitto_int_option(mosq_query, MOSQ_OPT_PROTOCOL_VERSION, MQTT_PROTOCOL_V5);
         mosquitto_connect(mosq_query, url, 1883, 1000);
         mosquitto_message_callback_set(mosq_query, receive_query);
-        mosquitto_subscribe_v5(mosq_query, NULL, "query", 2, 0, NULL);
+        mosquitto_subscribe_v5(mosq_query, NULL, "query", 0, 0, NULL);
         mosquitto_loop_forever(mosq_query, -1, 1);
     }
 
@@ -165,8 +165,7 @@ void mosquitto_looping(){
         mosquitto_int_option(mosq, MOSQ_OPT_PROTOCOL_VERSION, MQTT_PROTOCOL_V5);
         mosquitto_connect(mosq, url, 1883, 1000);
         mosquitto_message_callback_set(mosq, on_message);
-        mosquitto_subscribe_v5(mosq, NULL, "anomaly", 2, 0, NULL);
-
+        mosquitto_subscribe_v5(mosq, NULL, "anomaly", 0, 0, NULL);
     }
     else{
         mosq = mosquitto_new(NULL, true, NULL);
@@ -175,7 +174,7 @@ void mosquitto_looping(){
         mosquitto_message_callback_set(mosq, on_message);
 
         for(int i = 1; i <= 120; i++){
-            mosquitto_subscribe_v5(mosq, NULL, ("Topic" + std::to_string(i)).c_str(), 2, 0, NULL);
+            mosquitto_subscribe_v5(mosq, NULL, ("Topic" + std::to_string(i)).c_str(), 0, 0, NULL);
         }
     }
 
@@ -184,7 +183,7 @@ void mosquitto_looping(){
 }
 
 void report_anomaly(std::string anom){
-    mosquitto_publish_v5(mosq, NULL, "anomaly", anom.length(), anom.c_str(), 1, false, NULL);
+    mosquitto_publish_v5(mosq, NULL, "anomaly", anom.length(), anom.c_str(), 0, false, NULL);
 }
 
 std::vector<std::string> getQueries(){
